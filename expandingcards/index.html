@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expanding Cards</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto', sans-serif;
+      }
+      #main {
+        display: flex;
+        width: 90vw;
+      }
+      .image {
+        position: relative;
+        background-size: cover;
+        height: 80vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        flex-grow: 0.5;
+        border-radius: 20px;
+        margin: 0 10px;
+        transition: flex 0.7s ease-in-out;
+        filter: grayscale(100%);
+      }
+      .image:hover {
+        cursor: pointer;
+      }
+      .limelight {
+        flex-grow: 5;
+        filter: none;
+      }
+      .subtitle {
+        opacity: 0;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 5%;
+        left: 10%;
+        font-size: 4rem;
+        border: 4px goldenrod solid;
+        background-color: rgb(221, 189, 108);
+        transition: opacity 0.3s ease-in-out 0.2s;
+      }
+      .limelight .subtitle {
+        opacity: 1;
+      }
+      .subtitle:hover {
+        cursor: pointer;
+        border: black 4px dashed;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <div
+        class="image limelight"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1371&q=80');
+        "
+      >
+        <p class="subtitle">Visit Tokyo</p>
+      </div>
+      <div
+        class="image"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1558862107-d49ef2a04d72?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <p class="subtitle">Visit Kyoto</p>
+      </div>
+      <div
+        class="image"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1537153960513-344d9f2e8216?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <p class="subtitle">Visit Osaka</p>
+      </div>
+      <div
+        class="image"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1600927667545-f85897ad82a6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <p class="subtitle">Visit Nagoya</p>
+      </div>
+      <div
+        class="image"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1600505463782-83cfab4d5e1e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        "
+      >
+        <p class="subtitle">Visit Nagasaki</p>
+      </div>
+    </main>
+    <script>
+      const images = document.querySelectorAll('.image');
+
+      images.forEach((image) => {
+        image.addEventListener('click', () => {
+          resetClasses();
+          image.classList.add('limelight');
+        });
+      });
+      //  Make sure no image has the limelight class to avoid two or more images opening large at the same time
+      function resetClasses() {
+        images.forEach((image) => {
+          image.classList.remove('limelight');
+        });
+      }
+    </script>
+  </body>
+</html>
