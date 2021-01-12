@@ -59,13 +59,14 @@
         position: absolute;
         bottom: 5%;
         left: 10%;
-        font-size: 4rem;
+        font-size: 3rem;
         border: 4px goldenrod solid;
         background-color: rgb(221, 189, 108);
-        transition: opacity 0.3s ease-in-out 0.2s;
+        transition: opacity 0.5s;
       }
       .limelight .subtitle {
         opacity: 1;
+        transition: opacity 1.5s ease-in;
       }
       .subtitle:hover {
         cursor: pointer;
@@ -78,6 +79,12 @@
         #main {
           flex-direction: column;
           margin: 10px;
+        }
+        .image {
+          margin: 5px 0px;
+        }
+        .subtitle {
+          font-size: 1.5rem;
         }
       }
     </style>
