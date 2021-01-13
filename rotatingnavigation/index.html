@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotating Navigation Animation</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        font-family: 'Yusei Magic', sans-serif;
+      }
+      body {
+        background-color: #333;
+        overflow-x: hidden;
+        font-size: 18px;
+      }
+      header {
+        background-color: ghostwhite;
+      }
+      .wrapper {
+        background-color: ghostwhite;
+        width: 100vw;
+        min-height: 100vh;
+        padding: 50px;
+        transform-origin: top left;
+        transition: transform 0.5s linear;
+      }
+      .back-btn {
+        margin-left: 40%;
+        background: goldenrod;
+        color: #333;
+        text-decoration: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+      }
+      .nav {
+        visibility: hidden;
+      }
+
+      .nav-links {
+        color: ghostwhite;
+        list-style: none;
+        position: absolute;
+        bottom: 0;
+      }
+      .nav-links li {
+        text-transform: uppercase;
+        color: ghostwhite;
+        margin: 15px;
+        font-size: 1.2rem;
+        transform: translateX(-200%);
+        transition: transform 0.3s ease;
+      }
+      .nav-links li a {
+        color: ghostwhite;
+        text-decoration: none;
+      }
+      .nav-links li:nth-child(2) {
+        margin-left: 20px;
+      }
+      .nav-links li:nth-child(3) {
+        margin-left: 30px;
+      }
+      .show-nav .nav-links li {
+        transform: translateX(0);
+        transition: all 0.3s ease;
+      }
+      .circle-wrapper {
+        position: fixed;
+        top: -100px;
+        left: -100px;
+      }
+      .circle {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        justify-content: space-around;
+        background-color: teal;
+        transition: transform 0.5s linear;
+      }
+      #open,
+      #close {
+        background-color: transparent;
+        border: none;
+        margin-bottom: 30%;
+      }
+      .circle i {
+        font-size: 30px;
+        margin-left: 22px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+      .blog-post {
+        transition: transform 0.5s linear;
+        margin: 50px auto;
+        max-width: 1000px;
+      }
+      .blog-post img {
+        max-width: 100%;
+        border-radius: 20px;
+        border: 4px double black;
+      }
+      .rotate-content {
+        transform: rotate(-20deg);
+      }
+      .rotate-nav {
+        transform: rotate(-100deg);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back-btn" href="/home.html">Back to homepage</a>
+    </header>
+    <nav class="nav">
+      <ul class="nav-links">
+        <li>
+          <a href="#"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="fas fa-user-alt" aria-hidden="true"></i> About</a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <div class="circle-wrapper">
+        <div class="circle">
+          <button id="open">
+            <i class="fas fa-bars" aria-label="open navigation"></i>
+          </button>
+          <button id="close">
+            <i class="fas fa-times" aria-label="close navigation"></i>
+          </button>
+        </div>
+      </div>
+      <main id="main">
+        <div class="blog-post">
+          <h2>A pretty cute blog post</h2>
+          <p><em>August</em></p>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+              alt="a fluffy black and white cat with a blue butterfly on its nose"
+            />
+            <figcaption>
+              <em>Photo by Karina Vorozheeva via Unsplash</em>
+            </figcaption>
+          </figure>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro
+            eaque vero quidem similique commodi optio alias velit qui neque,
+            temporibus corporis dicta ad officia cupiditate recusandae. Unde rem
+            architecto quia libero, perspiciatis facilis sed quos, reprehenderit
+            voluptatum, aut delectus sint consequatur impedit assumenda. Totam
+            consectetur, laborum unde consequatur nostrum delectus blanditiis
+            dicta quis mollitia dolorem. Eaque molestias dolorum cupiditate quia
+            fuga tempora, distinctio velit? Expedita amet, reiciendis,
+            voluptates rerum eius numquam corporis quas debitis perferendis
+            ipsum nobis! Esse itaque magni, rem rerum tempora pariatur! Vitae,
+            delectus provident! Eos odit fuga totam exercitationem unde vero
+            blanditiis ipsum, ratione iure amet eligendi?
+          </p>
+        </div>
+      </main>
+    </div>
+    <script>
+      const openBtn = document.getElementById('open');
+      const closeBtn = document.getElementById('close');
+      const container = document.querySelector('.wrapper');
+      const navigation = document.querySelector('.nav');
+      const circleNav = document.querySelector('.circle');
+
+      openBtn.addEventListener('click', () => {
+        openBtn.setAttribute('aria-expanded', true);
+        closeBtn.focus();
+        container.classList.add('rotate-content');
+        circleNav.classList.add('rotate-nav');
+        navigation.style.visibility = 'visible';
+        navigation.classList.add('show-nav');
+      });
+      closeBtn.addEventListener('click', () => {
+        closeBtn.setAttribute('aria-expanded', false);
+        openBtn.focus();
+        container.classList.remove('rotate-content');
+        circleNav.classList.remove('rotate-nav');
+        navigation.classList.remove('show-nav');
+        setTimeout(() => {
+          navigation.style.visibility = 'hidden';
+        }, 300);
+      });
+    </script>
+  </body>
+</html>
