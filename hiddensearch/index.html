@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hidden Search Widget</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+      }
+      body {
+        background-color: lightsalmon;
+        font-size: 18px;
+      }
+      #main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .container {
+        padding: 20px;
+
+        display: flex;
+        justify-content: center;
+      }
+      .search,
+      .search-btn {
+        padding: 10px;
+        font-size: 1.2rem;
+        background-color: whitesmoke;
+        border: none;
+      }
+      .search-btn {
+        cursor: pointer;
+      }
+      .search {
+        width: 0;
+        transition: width 0.4s ease;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.4s ease;
+      }
+      .reveal {
+        width: 200px;
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.4s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="container">
+        <input
+          type="text"
+          name="search"
+          class="search"
+          id="search"
+          aria-label="search"
+          placeholder="Search..."
+        />
+        <button class="search-btn" type="button">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <script>
+      const searchBtn = document.querySelector('.search-btn');
+      const searchBox = document.getElementById('search');
+
+      searchBtn.addEventListener('click', () => {
+        searchBox.classList.toggle('reveal');
+        if (searchBox.classList.contains('reveal')) {
+          searchBtn.setAttribute('aria-label', 'close search box');
+          setTimeout(() => {
+            searchBox.focus();
+          }, 200);
+        } else {
+          searchBtn.setAttribute('aria-label', 'open search box');
+          searchBtn.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

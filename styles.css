@@ -40,3 +40,9 @@ body {
 .list {
   margin: 0 40px;
 }
+
+@media (max-width: 648px) {
+  #main a {
+    font-size: 1.5rem;
+  }
+}

@@ -95,6 +95,28 @@
         background-color: plum;
         transition: background-color 0.2s;
       }
+      @media (max-width: 648px) {
+        header {
+          z-index: 2;
+        }
+        #main {
+          transform: rotate(90deg);
+        }
+        #register,
+        #address,
+        #method,
+        #confirmation {
+          transform: rotate(-90deg);
+          margin-bottom: 40px;
+        }
+        button {
+          transform: rotate(-90deg);
+          margin-top: 40px;
+        }
+        .step {
+          color: ghostwhite;
+        }
+      }
     </style>
   </head>
   <body>
