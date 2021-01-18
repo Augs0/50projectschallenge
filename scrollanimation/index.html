@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Animation</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        font-family: 'Yusei Magic', sans-serif;
+      }
+      body {
+        background-color: #333;
+        overflow-x: hidden;
+        font-size: 18px;
+      }
+      .back-btn {
+        margin-left: 45%;
+        background: palevioletred;
+        color: #333;
+        text-decoration: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+      }
+      #main{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .content{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        font-size:1.7rem;
+        width:300px;
+        height:100px;
+        background-color:palevioletred;
+        margin:20px;
+        border-radius: 10px;;
+        color:#333;
+        transform:translateX(500%);
+      }
+
+      .visible{
+        transform:translateX(0);
+      }
+    
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="back-btn" href="/home.html">Back to homepage</a>
+    </header>
+          
+      <main id="main">
+        <div class="content visible">Content</div>
+        <div class="content visible">Content</div>
+        <div class="content visible">Content</div>
+        <div class="content visible">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+        <div class="content">Content</div>
+      </main>
+    </div>
+    <script>
+      //  Adds a scroll property to body that can be accessed with CSS to handle animation
+      //  On scroll, this property is set to the pixel value of how far the page has been scrolled (pageYOffset) divided by the height of the body minus the height of the window.
+      window.addEventListener('scroll', () => {
+  document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+}, false);
+
+    </script>
+  </body>
+</html>
