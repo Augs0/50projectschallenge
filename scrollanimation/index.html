@@ -43,17 +43,23 @@
         justify-content: center;
         align-items: center;
         font-size:1.7rem;
-        width:300px;
-        height:100px;
+        width:400px;
+        height:200px;
         background-color:palevioletred;
         margin:20px;
         border-radius: 10px;;
         color:#333;
-        transform:translateX(500%);
+        transition: all .5s;
       }
 
-      .visible{
-        transform:translateX(0);
+      .hidden{
+        transform:translateX(30%) scale(0.95);
+        opacity:0;
+      }
+
+      .slide{
+        transform:translateX(0) scale(1);
+        opacity:1;
       }
     
     </style>
@@ -68,23 +74,32 @@
         <div class="content visible">Content</div>
         <div class="content visible">Content</div>
         <div class="content visible">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
-        <div class="content">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
+        <div class="content hidden">Content</div>
       </main>
     </div>
     <script>
-      //  Adds a scroll property to body that can be accessed with CSS to handle animation
-      //  On scroll, this property is set to the pixel value of how far the page has been scrolled (pageYOffset) divided by the height of the body minus the height of the window.
-      window.addEventListener('scroll', () => {
-  document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
-}, false);
+      
+      const hiddenBoxes = document.querySelectorAll('.hidden');
 
+      function triggerSlide(e){
+        hiddenBoxes.forEach(box => {
+          const whenToSlide = (window.scrollY + window.innerHeight) - box.offsetHeight / 2;
+          const shown = whenToSlide > box.offsetTop;
+          if(shown){
+            box.classList.add('slide');
+          } else{
+            box.classList.remove('slide');
+          }
+        })
+      }
+
+      window.addEventListener('scroll', triggerSlide);
     </script>
   </body>
 </html>
