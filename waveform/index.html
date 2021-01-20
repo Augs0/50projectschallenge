@@ -70,7 +70,7 @@
         border-radius: 10px;
         margin: 10px;
       }
-      button {
+      .button {
         background-color: ghostwhite;
         border-radius: 5px;
         transition: all 0.3s;
@@ -79,12 +79,19 @@
         font-size: 1.1rem;
         font-family: 'Acme', sans-serif;
         text-transform: uppercase;
+        text-decoration: none;
+        color: #333;
+        text-align: center;
+        margin: 5px;
       }
-      button:hover {
+      .button:hover {
         background-color: #ffc714;
       }
       a {
         color: #ffc714;
+      }
+      .center {
+        text-align: center;
       }
     </style>
   </head>
@@ -118,7 +125,8 @@
               </label>
             </div>
           </fieldset>
-          <button>Log in</button>
+          <button class="button" type="button">Log in</button>
+          <a class="center" href="/home.html">Back to homepage</a>
           <p>Don't have an account? <a href="#"> Click here to register</a></p>
         </form>
       </div>
