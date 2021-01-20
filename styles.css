@@ -37,6 +37,10 @@ body {
   background-color: rgba(224, 25, 25, 0.72);
 }
 
+.orange {
+  background-color: rgba(224, 98, 25, 0.72);
+}
+
 .list {
   margin: 0 40px;
 }
