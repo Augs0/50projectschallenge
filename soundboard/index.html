@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sound Board</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: rgb(108, 67, 219);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        height: 100vh;
+        font-family: 'Oxygen', sans-serif;
+      }
+      h2,
+      a {
+        color: ghostwhite;
+        text-align: center;
+      }
+      a {
+        display: block;
+      }
+      #main {
+        max-width: 450px;
+      }
+      .btn {
+        min-width: 200px;
+        margin: 10px;
+        font-size: 1.2rem;
+        font-family: 'Oxygen', sans-serif;
+        background-color: rgb(72, 49, 134);
+        color: ghostwhite;
+        padding: 30px;
+        border: 0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 2s;
+      }
+      .btn:hover {
+        background-color: darkorchid;
+      }
+      .btn:focus {
+        outline: solid ghostwhite 6px;
+        -moz-outline-radius: 10px;
+      }
+      .btn span {
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 678px) {
+        body {
+          align-items: unset;
+          justify-content: unset;
+        }
+        #main {
+          width: 100vw;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <h2>Reaction sound board</h2>
+      <a href="/home.html">Back to homepage</a>
+      <button aria-label="Play applause sound" type="button" class="btn">
+        <span class="sound">applause</span>
+      </button>
+      <button aria-label="Play boo sound" type="button" class="btn">
+        <span class="sound">boo</span>
+      </button>
+      <button aria-label="Play gasping sound" type="button" class="btn">
+        <span class="sound">gasp</span>
+      </button>
+      <button aria-label="Play tah dah sound" type="button" class="btn">
+        <span class="sound">tada</span>
+      </button>
+      <button aria-label="Play victory sound" type="button" class="btn">
+        <span class="sound">victory</span>
+      </button>
+      <button aria-label="Play wrong sound" type="button" class="btn">
+        <span class="sound">wrong</span>
+      </button>
+      <audio id="applause" src="./sounds/applause.mp3">Applause</audio>
+      <audio id="boo" src="./sounds/boo.mp3">Boo</audio>
+      <audio id="gasp" src="./sounds/gasp.mp3">Gasp</audio>
+      <audio id="tada" src="./sounds/tada.mp3">Tada</audio>
+      <audio id="victory" src="./sounds/victory.mp3">Victory</audio>
+      <audio id="wrong" src="./sounds/wrong.mp3">Wrong</audio>
+    </main>
+    <script>
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach((btn) => {
+        let currentSound = btn.innerText; //  inner text must be the same as the matching audio id
+        btn.addEventListener('click', () => {
+          stopPlaying(); //  pauses and restarts audio to avoid overlap
+          document.getElementById(currentSound).play();
+        });
+      });
+
+      function stopPlaying() {
+        buttons.forEach((btn) => {
+          let currentSound = btn.innerText;
+          const sound = document.getElementById(currentSound);
+          sound.pause();
+          sound.currentTime = 0;
+        });
+      }
+    </script>
+  </body>
+</html>
