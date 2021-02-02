@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Keys</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+        background-color: whitesmoke;
+      }
+      h2 {
+        text-align: center;
+      }
+
+      .keys {
+        display: inline-flex;
+        flex-wrap: wrap;
+      }
+      .key {
+        display: flex;
+        flex-direction: column;
+        min-width: 150px;
+        margin: 10px;
+        padding: 5px;
+        box-shadow: 5px 5px 5px darksalmon;
+        background-color: lightsalmon;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+      .key p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <h2>Press any key to get the keyCode</h2>
+      <div class="keys">
+        <div id="event-key"></div>
+        <div id="event-keycode"></div>
+        <div id="event-code"></div>
+      </div>
+    </main>
+    <script>
+      const eventKey = document.getElementById('event-key');
+      const eventKeyCode = document.getElementById('event-keycode');
+      const eventCode = document.getElementById('event-code');
+
+      window.addEventListener('keydown', showInfo);
+
+      function showInfo(e) {
+        //  e.key for the Space bar returns an empty spce, so we need to check for that as well as keys
+        eventKey.classList.add('key');
+        eventKeyCode.classList.add('key');
+        eventCode.classList.add('key');
+
+        eventKey.innerHTML = `
+        <p>event.key:</p>
+       <p> ${e.key === ' ' ? 'Space' : e.key}</p>
+        `;
+        eventKeyCode.innerHTML = `
+        <p>event.keyCode:</p>
+        <p>${e.keyCode}</p>
+        `;
+        eventCode.innerHTML = `
+        <p>event.code:</p>
+        <p>${e.code}</p>
+        `;
+      }
+    </script>
+  </body>
+</html>
