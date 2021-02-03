@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Collapse</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: whitesmoke;
+        font-family: 'Quicksand', sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        margin: 10px;
+      }
+      .question {
+        display: flex;
+        justify-content: space-between;
+        border: 1px darkgrey solid;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        transition: 0.3s ease;
+      }
+      .question .content h2 {
+        z-index: 2;
+        margin: 0;
+        justify-self: flex-start;
+        width: 80%;
+      }
+      .question .content p {
+        display: none;
+      }
+      .open {
+        background-color: ghostwhite;
+      }
+      .open .content p {
+        display: block;
+      }
+      .open::before,
+      .open::after {
+        content: '\f075';
+        font-family: 'Font Awesome 5 Free';
+        position: absolute;
+        font-size: 7rem;
+        opacity: 0.3;
+        color: rgb(136, 240, 136);
+        z-index: 0;
+        left: 30px;
+        top: 20px;
+      }
+      .open::after {
+        top: -10px;
+        left: -30px;
+        transform: rotateY(160deg);
+        color: rgb(137, 230, 230);
+      }
+      .showBtn {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        border: none;
+        position: absolute;
+        right: 20px;
+        justify-self: flex-end;
+        cursor: pointer;
+        transform: rotate(90deg);
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Collapsing F.A.Q.</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="question">
+          <div class="content">
+            <h2>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Deleniti, dolore!
+            </h2>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Necessitatibus, quod?
+            </p>
+          </div>
+          <button aria-label="Open F.A.Q." type="button" class="showBtn">
+            >
+          </button>
+        </div>
+        <div class="question">
+          <div class="content">
+            <h2>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Repudiandae quas dicta vel cumque veritatis suscipit!
+            </h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Pariatur, dignissimos.
+            </p>
+          </div>
+          <button aria-label="Open F.A.Q." type="button" class="showBtn">
+            >
+          </button>
+        </div>
+        <div class="question">
+          <div class="content">
+            <h2>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam
+              aliquid eveniet sit natus dolores consequuntur in quidem ipsum
+              placeat voluptate.
+            </h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro
+              mollitia sunt ex voluptates quis placeat.
+            </p>
+          </div>
+          <button aria-label="Open F.A.Q." type="button" class="showBtn">
+            >
+          </button>
+        </div>
+        <div class="question">
+          <div class="content">
+            <h2>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Quisquam, necessitatibus.
+            </h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
+              culpa consequuntur nulla eligendi, molestiae optio facilis quae
+              atque.
+            </p>
+          </div>
+          <button aria-label="Open F.A.Q." type="button" class="showBtn">
+            >
+          </button>
+        </div>
+        <div class="question">
+          <div class="content">
+            <h2>Lorem ipsum dolor sit amet.</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+              dicta.
+            </p>
+          </div>
+          <button aria-label="Open F.A.Q." type="button" class="showBtn">
+            >
+          </button>
+        </div>
+      </div>
+    </main>
+    <script>
+      const buttons = document.querySelectorAll('.showBtn');
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          button.parentNode.classList.toggle('open');
+          checkContent();
+        });
+      });
+
+      function checkContent() {
+        buttons.forEach((button) => {
+          if (button.parentNode.classList.contains('open')) {
+            button.innerText = 'x';
+            button.setAttribute('aria-label', 'Close F.A.Q.');
+          } else {
+            button.innerText = '>';
+            button.setAttribute('aria-label', 'Open F.A.Q.');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
