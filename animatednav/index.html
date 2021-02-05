@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Nav</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Andika New Basic', sans-serif;
+      }
+      #main {
+        min-height: 100vh;
+      }
+      .top {
+        position: relative;
+        height: 50vh;
+        background-color: azure;
+      }
+      .bottom {
+        height: 50vh;
+        background-color: cornflowerblue;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        position: absolute;
+        top: 90%;
+        left: 45%;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+        width: 80px;
+        padding: 20px;
+        transition: width 0.6s linear;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 0;
+        transition: width 0.6s linear;
+      }
+      .nav-links li {
+        opacity: 0;
+        /* display: none; */
+        margin: 0px 10px;
+        transform: rotateY(0deg);
+        transition: transform 0.6s linear, opacity 0.6s linear;
+      }
+      .nav-links li a {
+        text-decoration: none;
+        color: royalblue;
+        border-bottom: 4px double transparent;
+      }
+      .nav-links li a:hover {
+        border-bottom: 4px double black;
+      }
+
+      .nav-control {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        border: 0;
+        background-color: azure;
+        cursor: pointer;
+      }
+      .line {
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: cornflowerblue;
+      }
+      .line-one {
+        top: 10px;
+        left: 5px;
+      }
+      .line-two {
+        top: auto;
+        bottom: 10px;
+      }
+      .open {
+        width: 350px;
+        top: 90%;
+        left: 40%;
+      }
+      .open .nav-links {
+        width: 100%;
+      }
+      .open .nav-links li {
+        opacity: 1;
+        display: flex;
+        transform: rotateY(360deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div class="top">
+        <nav class="nav">
+          <ul class="nav-links">
+            <li><a href="/home.html" class="first">Home</a></li>
+            <li><a href="#">Works</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <button type="button" class="nav-control">
+            <div class="line line-one"></div>
+            <div class="line line-two"></div>
+          </button>
+        </nav>
+      </div>
+      <div class="bottom"></div>
+    </div>
+    <script>
+      const navBtn = document.querySelector('.nav-control');
+      const nav = document.querySelector('.nav');
+      const firstLink = document.querySelector('.first');
+
+      navBtn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+        navBtn.classList.toggle('pressed');
+        if (navBtn.classList.contains('pressed')) {
+          firstLink.focus();
+          navBtn.setAttribute('aria-label', 'Close navigation');
+        } else {
+          navBtn.setAttribute('aria-label', 'Open navigation');
+        }
+      });
+    </script>
+  </body>
+</html>

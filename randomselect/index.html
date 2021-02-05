@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Select</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: dodgerblue;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Mukta', sans-serif;
+      }
+      .home {
+        color: whitesmoke;
+        font-family: 'Mukte', sans-serif;
+      }
+      #main {
+        text-align: center;
+        width: 500px;
+      }
+      #userInputLabel {
+        font-size: 1.5rem;
+        color: whitesmoke;
+        text-align: center;
+        margin-bottom: 15px;
+        display: block;
+        margin-bottom: 20px;
+      }
+      #userInput {
+        width: 100%;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 1.2rem;
+      }
+      .choices {
+        margin-top: 50px;
+      }
+      .choice {
+        background-color: rebeccapurple;
+        color: ghostwhite;
+        font-size: 1.2rem;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px;
+      }
+      .highlight {
+        background-color: deeppink;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <a class="home" href="/home.html">Back to home</a>
+      <label
+        placeholder="Enter the choices..."
+        id="userInputLabel"
+        for="userInput"
+        >Enter all of the choices divided by a comma (','). <br />
+        Press enter when you're done</label
+      >
+      <textarea
+        name="userInput"
+        id="userInput"
+        cols="30"
+        rows="5"
+        placeholder="Enter choices!"
+      ></textarea>
+      <div class="choices"></div>
+    </main>
+    <script>
+      //  Get the input from user
+      const userInput = document.getElementById('userInput');
+      const choiceContainer = document.querySelector('.choices');
+
+      //  Both keyup and keydown work but keyup gives a smoother result
+      userInput.addEventListener('keyup', (event) => {
+        showOptions(event.target.value);
+        if (event.keyCode === 13) {
+          setTimeout(() => {
+            event.target.value = ' ';
+          }, 10);
+          randomSelect();
+        }
+      });
+
+      function showOptions(input) {
+        //  First filter out any spaces choices, then trim whitespace to avoid trailing on words
+        const choices = input
+          .split(',')
+          .filter((inputItem) => inputItem.trim() !== '')
+          .map((inputItem) => inputItem.trim());
+
+        choiceContainer.innerHTML = '';
+
+        choices.forEach((singleChoice) => {
+          const newChoice = document.createElement('span');
+          newChoice.classList.add('choice');
+          newChoice.innerText = singleChoice;
+          choiceContainer.appendChild(newChoice);
+        });
+      }
+
+      function getRandomChoice() {
+        const choices = document.querySelectorAll('.choice');
+        return choices[Math.floor(Math.random() * choices.length)];
+      }
+
+      function randomSelect() {
+        const num = 30;
+        const length = 100; //  milliseconds
+
+        //  setInterval will run the function at the given interval, only stopping when told to
+        const interval = setInterval(() => {
+          const randomChoice = getRandomChoice();
+
+          addHighlight(randomChoice);
+
+          //  every 100ms the highlight will be removed whilst it is being added every 100ms to other random choices
+          setTimeout(() => {
+            removeHighlight(randomChoice);
+          }, length);
+        }, length);
+        //  this runs once to stop the setInterval
+        setTimeout(() => {
+          clearInterval(interval);
+          //  again we run this once to finally end up with a choice
+          setTimeout(() => {
+            const randomChoice = getRandomChoice();
+
+            addHighlight(randomChoice);
+          }, length);
+        }, length * num);
+      }
+
+      function addHighlight(choice) {
+        choice.classList.add('highlight');
+      }
+
+      function removeHighlight(choice) {
+        choice.classList.remove('highlight');
+      }
+    </script>
+  </body>
+</html>
