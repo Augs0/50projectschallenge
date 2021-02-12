@@ -41,6 +41,10 @@ body {
   background-color: rgba(224, 98, 25, 0.72);
 }
 
+.yellow {
+  background-color: rgba(224, 194, 25, 0.72);
+}
+
 .list {
   margin: 0 10%;
 }
